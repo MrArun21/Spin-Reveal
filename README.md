@@ -11,4 +11,4 @@
 - React on [Vite](https://vite.dev/)
 - [TailwindCss](https://tailwindcss.com/)
 
-### [Live Link]()
+### [Live Link](https://spin-reveal-wheat.vercel.app/)
