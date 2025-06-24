@@ -40,6 +40,10 @@ The `ReelLogic` hook controls the core functionality of the slot machine game, i
 
 - Resets the game to its initial state with placeholder symbols and no result.
 
+####  🚀 Turbo Mode
+
+- Disables the reel animation and instantly displays the final result
+
 #### 🧩 Used Features
 
 - Built using **React Hooks**: `useState` for state management and `useRef` for sound control.
