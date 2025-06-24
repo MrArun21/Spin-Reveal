@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Sancreek&display=swap");
+
+@import "tailwindcss";
+
+@theme {
+  --font-Inter: "Inter", sans-serif;
+  --font-Sancreek: "Sancreek", sans-serif;
+  --color-primary: #323641;
+  --color-secondary: #d9d9d9;
+  --color-ascent: #7de981;
+}
+
+@layer utilities {
+  @keyframes border-spin {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .animate-border-spin {
+    background-size: 300% 300%;
+    animation: border-spin 2s linear infinite;
+  }
+}
