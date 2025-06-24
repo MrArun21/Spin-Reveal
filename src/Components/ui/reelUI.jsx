@@ -7,6 +7,8 @@ export default function reelUI() {
     reels,
     isSpinning,
     result,
+    isTurbo,
+    toggleTurbo,
     playableSymbol,
     spinSoundRef,
     winSoundRef,
@@ -60,6 +62,22 @@ export default function reelUI() {
           </h1>
           <p className=" text-4xl py-2">{playableSymbol}</p>
           <p className="text-purple-600">Match all three symbols to win!</p>
+          <button
+            onClick={toggleTurbo}
+            className={`px-4 py-2 my-3 rounded-2xl font-semibold shadow-md transition-all duration-200
+    ${
+      isTurbo
+        ? "bg-green-500 text-white hover:bg-green-600"
+        : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+    }
+  `}
+          >
+            🚀 Turbo Mode: {isTurbo ? "ON" : "OFF"}
+          </button>
+          <p className="text-purple-600 ">
+            {" "}
+            🚀 Turbo Mode will disable the Reel animation
+          </p>
         </div>
         <div
           className={`relative rounded-3xl p-2  ${

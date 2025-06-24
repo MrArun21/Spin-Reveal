@@ -2,9 +2,11 @@ import { useState, useRef } from "react";
 
 const playableSymbol = ["🍒", "🍊", "🍉"];
 const initialValue = ["➖", "➖", "➖"];
+
 export const ReelLogic = () => {
   const [reels, setReels] = useState(initialValue);
   const [isSpinning, setIsSpinning] = useState(false);
+  const [isTurbo, setIsTurbo] = useState(false);
   const [result, setResult] = useState(null);
 
   const spinSoundRef = useRef(null);
@@ -14,19 +16,20 @@ export const ReelLogic = () => {
   const getRandomSymbol = () =>
     playableSymbol[Math.floor(Math.random() * playableSymbol.length)];
 
-  const generateOutcome = () => {
-    return Array(3)
+  const generateOutcome = () =>
+    Array(3)
       .fill()
       .map(() => getRandomSymbol());
-  };
 
-  const checkWin = (symbols) => {
-    return symbols.every((s) => s === symbols[0]);
-  };
+  const checkWin = (symbols) => symbols.every((s) => s === symbols[0]);
 
   const resetGame = () => {
     setReels(initialValue);
     setResult(null);
+  };
+
+  const toggleTurbo = () => {
+    setIsTurbo((prev) => !prev);
   };
 
   const handleSpin = () => {
@@ -34,7 +37,21 @@ export const ReelLogic = () => {
     setIsSpinning(true);
     setResult(null);
 
-    let finalOutcome = generateOutcome();
+    const finalOutcome = generateOutcome();
+
+    //  Turbo Mode
+    if (isTurbo) {
+      setReels(finalOutcome);
+      const isWin = checkWin(finalOutcome);
+      setTimeout(() => {
+        setResult(isWin ? "win" : "lose");
+        setIsSpinning(false);
+      }, 600);
+
+      if (isWin && winSoundRef.current) winSoundRef.current.play();
+      else if (!isWin && loseSoundRef.current) loseSoundRef.current.play();
+      return;
+    }
 
     const intervals = [];
 
@@ -95,6 +112,8 @@ export const ReelLogic = () => {
     reels,
     isSpinning,
     result,
+    isTurbo,
+    toggleTurbo,
     playableSymbol,
     spinSoundRef,
     winSoundRef,
